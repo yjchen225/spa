@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B 發訊廣告潛在客戶跟進指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .tab-active {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .tab-inactive {
+            border-color: transparent;
+            color: #6b7280;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Main Container -->
+    <div class="container mx-auto max-w-5xl p-4 sm:p-6 md:p-8">
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">B2B 發訊廣告潛在客戶跟進指南</h1>
+            <p class="mt-2 text-lg text-gray-600">一個幫助您將「沉默點擊」轉化為「有效對話」的互動手冊</p>
+        </header>
+
+        <!-- Core Principles -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-blue-500 pl-4 mb-4">核心心態與原則</h2>
+            <div class="grid md:grid-cols-3 gap-4 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-blue-500 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V4a2 2 0 012-2h8a2 2 0 012 2v4z" /></svg>
+                    </div>
+                    <h3 class="font-bold text-lg">他們在觀望</h3>
+                    <p class="text-gray-600 text-sm">點擊代表初步興趣，我們的目標是「降低回應門檻」，而非強迫推銷。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-blue-500 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="font-bold text-lg">速度決定溫度</h3>
+                    <p class="text-gray-600 text-sm">理想情況下，在 5 分鐘內回應。利用自動化把握黃金時間，展現效率。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-blue-500 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="font-bold text-lg">我們是引導者</h3>
+                    <p class="text-gray-600 text-sm">重點是確認身份、了解需求、引導價值，而不是急於銷售產品。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3-Step Follow-up Framework -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-blue-500 pl-4 mb-6">三步驟跟進法</h2>
+            
+            <!-- Tabs Navigation -->
+            <div class="border-b border-gray-200 mb-6">
+                <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                    <button onclick="changeTab(1)" id="tab-1" class="tab-btn tab-active whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors duration-200">
+                        第一步：自動化即時回應
+                    </button>
+                    <button onclick="changeTab(2)" id="tab-2" class="tab-btn tab-inactive whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors duration-200">
+                        第二步：人工個人化跟進
+                    </button>
+                    <button onclick="changeTab(3)" id="tab-3" class="tab-btn tab-inactive whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors duration-200">
+                        第三步：價值導向培育
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Tabs Content -->
+            <div id="tab-content">
+                <!-- Step 1 Content -->
+                <div id="content-1" class="tab-pane fade-in">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-2">自動化即時回應 (5分鐘內)</h3>
+                        <p class="text-gray-600 mb-4">當客戶一發訊進來，系統應立即自動回覆。目標是破冰、確認情境、並提出一個極簡單的問題。</p>
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <p class="font-semibold text-gray-700">範例腳本 A (通用友好版)</p>
+                                <p id="script1A" class="my-2 text-gray-800">您好！👋 感謝您對我們的 B2B 產品發佈會感興趣。<br><br>很高興能在這裡見到您。請問您是想先索取詳細的【活動議程】，還是想了解這次發表的【新產品亮點】呢？</p>
+                                <button onclick="copyScript('script1A', this)" class="copy-btn mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                    <span>複製腳本</span>
+                                </button>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <p class="font-semibold text-gray-700">範例腳本 B (引導痛點版)</p>
+                                <p id="script1B" class="my-2 text-gray-800">您好，很高興見到您！感謝您對我們即將舉辦的「AI 驅動的供應鏈優化」產品發佈會感興趣。<br><br>許多像您一樣的專業人士，目前最關心的課題是「如何降低庫存成本」或是「如何提升預測準確性」。請問您對哪個議題比較有興趣呢？</p>
+                                <button onclick="copyScript('script1B', this)" class="copy-btn mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                    <span>複製腳本</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 Content -->
+                <div id="content-2" class="tab-pane hidden fade-in">
+                     <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-2">人工個人化跟進 (5-30分鐘內)</h3>
+                        <p class="text-gray-600 mb-4">無論客戶是否回覆自動訊息，業務團隊都應介入，展開真實對話或進行二次破冰。</p>
+                        
+                        <div class="border-t border-gray-200 mt-6 pt-6">
+                            <h4 class="font-bold text-lg text-green-600 mb-3">情境一：客戶已回覆自動訊息</h4>
+                            <p class="text-sm text-gray-500 mb-4">目標：根據客戶的選擇提供資訊，並順勢提出一個「開放式問題」來挖掘需求。</p>
+                            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                <p class="font-semibold text-gray-700">範例腳本 (若客戶選擇「活動議程」)</p>
+                                <p id="script2A" class="my-2 text-gray-800">好的，這是我們詳細的活動議程 [附上圖片或簡短文字說明]。您可以看到，我們特別邀請了 [某位重量級講者] 來分享 [某個主題]。<br><br>冒昧請教一下，您目前在公司是負責哪個領域的業務呢？想確認一下這次的議程對您是否有直接的幫助。</p>
+                                <button onclick="copyScript('script2A', this)" class="copy-btn mt-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                    <span>複製腳本</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-200 mt-6 pt-6">
+                            <h4 class="font-bold text-lg text-orange-600 mb-3">情境二：客戶未回覆自動訊息</h4>
+                            <p class="text-sm text-gray-500 mb-4">目標：主動、無壓迫感地進行二次破冰，提供一個無需互動也能獲得的「小價值」。</p>
+                            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200 space-y-4">
+                                <div>
+                                    <p class="font-semibold text-gray-700">範例腳本 A (提供懶人包)</p>
+                                    <p id="script2B" class="my-2 text-gray-800">Hi [客戶名字]，我是 [公司名稱] 的 [你的名字]。剛剛系統可能有點急著跟您打招呼了😄。<br><br>我猜您可能正在忙，所以先附上這次發表會的【三大看點懶人包】給您參考：<br>1. 獨家技術揭秘：我們將首次公開 [某項技術] 的運作原理。<br>2. 客戶成功案例：[某知名企業] 將分享他們導入後的實際成效。<br>3. 現場交流機會：與超過 100 位產業專家現場互動。<br><br>如果您對其中任何一點感興趣，隨時都可以告訴我，我們可以深入聊聊。祝您有美好的一天！</p>
+                                    <button onclick="copyScript('script2B', this)" class="copy-btn mt-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                        <span>複製腳本</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <!-- Step 3 Content -->
+                <div id="content-3" class="tab-pane hidden fade-in">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-2">價值導向的持續培育 (24-48小時後)</h3>
+                        <p class="text-gray-600 mb-4">如果潛在客戶仍未回應，將其轉為「中期培育名單」，在不打擾的前提下，進行 1-2 次有價值的跟進。</p>
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <p class="font-semibold text-gray-700">第三次跟進 (2-3 天後)</p>
+                                <p id="script3A" class="my-2 text-gray-800">Hi [客戶名字]，打擾一下。我們發佈會的其中一位講者，[講者姓名]，最近剛好發表了一篇關於 [相關主題] 的精彩文章，我覺得內容對您可能很有啟發，在這裡分享給您：[附上文章或影片連結]。<br><br>希望對您有幫助！如果您想和這位講者在活動現場聊聊，席位有限，建議可以先完成報名喔。</p>
+                                <button onclick="copyScript('script3A', this)" class="copy-btn mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                    <span>複製腳本</span>
+                                </button>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <p class="font-semibold text-gray-700">第四次跟進 (活動前一週，最後提醒)</p>
+                                <p id="script3B" class="my-2 text-gray-800">您好 [客戶名字]，跟您做個溫馨提醒，我們下週的 B2B 產品發佈會報名即將截止了。目前已有來自 [提及一些知名公司或產業別] 的專業人士報名參加。<br><br>這將會是一場很棒的產業交流活動，錯過可惜。如果您還有任何疑問，或需要我為您保留席位，請告訴我。<br><br>報名連結：[附上 Accupass 連結]</p>
+                                <button onclick="copyScript('script3B', this)" class="copy-btn mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                    <span>複製腳本</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section class="mt-10">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-blue-500 pl-4 mb-4">團隊最佳實務檢查表</h2>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✓</span><span><b>啟用即時自動回覆：</b>確保沒有任何一個 Lead 在黃金 5 分鐘內被忽略。</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✓</span><span><b>快速人工介入：</b>無論客戶是否回應，都要在 1 小時內進行個人化跟進。</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✓</span><span><b>先給予，再索取 (Give Before You Ask)：</b>在要求對方回答問題前，先提供有價值的資訊。</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✓</span><span><b>多用開放式問題：</b>用「如何」、「什麼」、「為什麼」來鼓勵對方分享更多資訊。</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✓</span><span><b>做好客戶標籤與記錄：</b>在 CRM 或 Excel 中記錄互動階段，方便管理。</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✓</span><span><b>保持正面心態：</b>社群私訊開發本來就會有大量沉默的 Lead，這是正常的。</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✓</span><span><b>統一但可客製化的腳本：</b>團隊應有共用腳本，但鼓勵成員微調，讓對話更真實。</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center mt-10 pt-6 border-t border-gray-200">
+            <p class="text-sm text-gray-500">此互動指南由 AI 顧問生成，旨在提升您的業務開發效率。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- Tab Navigation Logic ---
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        function changeTab(tabIndex) {
+            tabButtons.forEach((button, index) => {
+                if (index + 1 === tabIndex) {
+                    button.classList.add('tab-active');
+                    button.classList.remove('tab-inactive');
+                } else {
+                    button.classList.remove('tab-active');
+                    button.classList.add('tab-inactive');
+                }
+            });
+
+            tabPanes.forEach((pane, index) => {
+                if (index + 1 === tabIndex) {
+                    pane.classList.remove('hidden');
+                    pane.classList.add('fade-in');
+                } else {
+                    pane.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- Copy to Clipboard Logic ---
+        function copyScript(elementId, button) {
+            const scriptText = document.getElementById(elementId).innerText;
+            
+            // Using a temporary textarea to preserve formatting
+            const textArea = document.createElement('textarea');
+            textArea.value = scriptText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                // Use execCommand as a fallback for iframe environments
+                document.execCommand('copy');
+                
+                // Provide visual feedback
+                const originalText = button.querySelector('span').textContent;
+                const originalIcon = button.innerHTML;
+                button.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                    <span>已複製！</span>
+                `;
+                
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                }, 2000);
+
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                alert('複製失敗，請手動複製。');
+            }
+
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
