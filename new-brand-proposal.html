@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RICA & JIYU International：亞洲市場的未來成長戰略夥伴</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+            overflow: hidden; /* Prevent body scroll */
+        }
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            position: relative;
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+        }
+        /* 自定義漸變背景 */
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .gradient-bg-dark {
+            background: linear-gradient(135deg, #303a52 0%, #574b90 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1.5rem;
+        }
+        /* 頁碼樣式 */
+        .slide-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.4);
+        }
+        .slide-number-dark {
+             color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* 導航按鈕樣式 */
+        .nav-arrow {
+            position: fixed;
+            right: 2rem;
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+            transform: scale(1.1);
+        }
+        #prev-slide { top: 45%; }
+        #next-slide { bottom: 45%; }
+        
+        /* 圖表佔位符樣式 */
+        .chart-placeholder {
+            border: 2px dashed #9ca3af;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #f9fafb;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <main id="slide-container" class="slide-container">
+        <!-- 投影片 1: 標題頁 -->
+        <section class="slide gradient-bg-dark text-white text-center flex-col">
+            <div class="glass-effect p-12 w-full max-w-4xl">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wider">RICA & JIYU International</h1>
+                <h2 class="text-3xl md:text-4xl font-light mb-8 tracking-wide">亞洲市場的未來成長戰略夥伴</h2>
+                <p class="text-xl text-gray-300">一份旨在開創三贏局面的商業合作提案</p>
+            </div>
+            <div class="slide-number slide-number-dark">1 / 24</div>
+        </section>
+
+        <!-- 投影片 2: 議程 -->
+        <section class="slide gradient-bg flex-col">
+            <div class="w-full max-w-4xl text-left">
+                <h2 class="text-2xl font-bold text-gray-500 mb-4 tracking-widest">議程</h2>
+                <div class="space-y-6 text-3xl text-gray-800">
+                    <div class="flex items-center"><span class="text-blue-600 font-bold mr-4">1.</span> 市場現況與台灣的獨特機會</div>
+                    <div class="flex items-center"><span class="text-blue-600 font-bold mr-4">2.</span> 一個由通路驅動的全新商業提案</div>
+                    <div class="flex items-center"><span class="text-blue-600 font-bold mr-4">3.</span> 雙贏的策略合作模式與品牌藍圖</div>
+                    <div class="flex items-center"><span class="text-blue-600 font-bold mr-4">4.</span> 具體行動方案與共同願景</div>
+                </div>
+            </div>
+            <div class="slide-number">2 / 24</div>
+        </section>
+
+        <!-- 投影片 3: 市場挑戰 -->
+        <section class="slide bg-gray-100 flex-col">
+            <div class="w-full max-w-4xl text-center">
+                <h1 class="text-5xl font-bold text-red-600 mb-8">2025是一個充滿挑戰的一年</h1>
+                <ul class="text-2xl text-gray-700 space-y-6 list-disc list-inside text-left">
+                    <li>全球普遍的通貨膨脹現象，讓消費市場持續的出現縮減情形</li>
+                    <li>美國關稅政策造成全球市場的不確定性大增，連帶影響各個國家的人民，在消費支出上趨於保守</li>
+                </ul>
+            </div>
+            <div class="slide-number">3 / 24</div>
+        </section>
+        
+        <!-- 投影片 4: 逆勢成長 -->
+        <section class="slide bg-white flex-col">
+            <div class="w-full max-w-5xl">
+                <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">然而，在台灣，我們的合作夥伴尤卡髮型集團（UCA salon），仍在逆勢中成長</h1>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-blue-50 p-6 rounded-lg shadow">
+                        <h2 class="text-5xl font-bold text-blue-600">9.6%</h2>
+                        <p class="text-lg text-gray-600 mt-2">預計年成長率</p>
+                        <p class="text-sm text-gray-500 mt-1">截至8月底營業額18.2M EUR，預計全年25.6M EUR</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg shadow">
+                        <h2 class="text-5xl font-bold text-blue-600">25 家 / 800 位</h2>
+                        <p class="text-lg text-gray-600 mt-2">門市 / 設計師人數</p>
+                        <p class="text-sm text-gray-500 mt-1">預計2025年底規模</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg shadow">
+                        <h2 class="text-5xl font-bold text-blue-600">> 預期</h2>
+                        <p class="text-lg text-gray-600 mt-2">Lab品牌拓店速度</p>
+                        <p class="text-sm text-gray-500 mt-1">平價門市品牌快速擴張</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">4 / 24</div>
+        </section>
+
+        <!-- 投影片 5: 核心問題 -->
+        <section class="slide bg-gray-100 flex-col">
+            <div class="w-full max-w-5xl text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-8">雖然尤卡集團的業績持續增長，<br>但RICA產品的佔比卻出現下降的情況。</h1>
+                <div class="chart-placeholder h-80">
+                    <p class="text-xl font-bold text-gray-700 mb-4">UCA總營業額 vs RICA產品佔比</p>
+                    <p class="text-gray-500">（此處建議使用雙軸圖表：左Y軸為UCA總營業額的長條圖，呈現逐年增長；右Y軸為RICA產品佔比的折線圖，呈現逐年下降。）</p>
+                    <div class="w-full h-full flex items-end justify-around p-4 border-t border-l mt-4 border-gray-300 relative">
+                        <div class="absolute -left-8 top-1/2 -rotate-90 text-gray-500">UCA總營業額</div>
+                         <div class="absolute -right-8 top-1/2 -rotate-90 text-gray-500">RICA佔比(%)</div>
+                        <div class="w-1/4 h-1/3 bg-blue-300 rounded-t-md"></div>
+                        <div class="w-1/4 h-2/3 bg-blue-400 rounded-t-md"></div>
+                        <div class="w-1/4 h-full bg-blue-500 rounded-t-md"></div>
+                        <div class="absolute w-full h-full top-0 left-0 flex">
+                            <svg class="overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M10,80 Q 40,30 60,40 T 90,20" stroke="orange" fill="none" stroke-width="2"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">5 / 24</div>
+        </section>
+
+        <!-- 投影片 6: 問題診斷 -->
+        <section class="slide bg-white flex-col">
+             <div class="w-full max-w-4xl">
+                <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">RICA產品在銷售上遇到的挑戰</h1>
+                <div class="grid md:grid-cols-2 gap-8 text-lg">
+                    <div class="bg-red-50 p-8 rounded-lg border-l-4 border-red-500">
+                        <h2 class="font-bold text-xl mb-2 text-red-700">高端市場增長有限</h2>
+                        <p class="text-gray-600">RICA的目標族群是高端客戶，雖然客單價高，但整體增長動能已趨於飽和。</p>
+                    </div>
+                    <div class="bg-red-50 p-8 rounded-lg border-l-4 border-red-500">
+                        <h2 class="font-bold text-xl mb-2 text-red-700">水貨衝擊銷售意願</h2>
+                        <p class="text-gray-600">水貨商品持續流通，不僅破壞價格體系，更嚴重影響了通路設計師的推廣銷售意願。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">6 / 24</div>
+        </section>
+
+        <!-- 投影片 7: 提出轉機 -->
+        <section class="slide gradient-bg text-center flex-col">
+            <div class="w-full max-w-5xl bg-white/70 backdrop-blur-md p-12 rounded-2xl shadow-lg">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">但，基於吉畇國際與尤卡髮型集團的深厚夥伴關係，<br>我們將迎來一個全新的商業機會</h1>
+            </div>
+            <div class="slide-number">7 / 24</div>
+        </section>
+
+        <!-- 投影片 8: 揭曉機會 -->
+        <section class="slide bg-white text-center flex-col">
+            <div class="w-full max-w-5xl">
+                <p class="text-2xl text-gray-600 mb-4">尤卡髮型集團主動向吉畇國際提案，希望</p>
+                <h1 class="text-5xl font-bold text-blue-600 mb-8">一起合作發展新的品牌</h1>
+                <p class="text-2xl text-gray-600">而我們希望邀請 <span class="font-bold text-blue-600">RICA集團</span> 一起加入這個計劃。</p>
+            </div>
+            <div class="slide-number">8 / 24</div>
+        </section>
+
+        <!-- 投影片 9: 為何加入 -->
+        <section class="slide bg-gray-100 flex-col">
+            <div class="w-full max-w-4xl">
+                <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">為什麼我們建議RICA應該加入這個計劃</h1>
+                <div class="space-y-6 text-xl">
+                    <div class="bg-white p-6 rounded-lg shadow flex items-start">
+                        <span class="text-green-500 text-3xl mr-4">✓</span>
+                        <div>
+                            <h2 class="font-bold text-gray-800">銷量保證的市場空缺</h2>
+                            <p class="text-gray-600">尤卡集團將結束與某平價品牌的合作，希望由我們提供新品牌補上，這是一個銷量有保障的商機。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow flex items-start">
+                        <span class="text-green-500 text-3xl mr-4">✓</span>
+                        <div>
+                            <h2 class="font-bold text-gray-800">符合通路未來策略</h2>
+                            <p class="text-gray-600">平價路線的自創品牌在亞洲市場仍有極大成長空間，這也是尤卡集團接下來的重點發展目標。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">9 / 24</div>
+        </section>
+
+        <!-- 投影片 10: 亞洲趨勢 -->
+        <section class="slide gradient-bg text-center flex-col">
+            <h1 class="text-5xl font-bold text-gray-800">在亞洲，我們看到許多的自創品牌成功案例</h1>
+            <p class="text-2xl text-gray-600 mt-4">這並非特例，而是一種趨勢</p>
+            <div class="slide-number">10 / 24</div>
+        </section>
+
+        <!-- 投影片 11: 韓國案例 -->
+        <section class="slide bg-white">
+            <div class="w-full max-w-6xl grid md:grid-cols-2 gap-8 items-center">
+                <div class="chart-placeholder h-96">
+                    <p class="text-gray-500">[韓國 Cha Hong 形象照與品牌產品]</p>
+                </div>
+                <div>
+                    <h1 class="text-4xl font-bold mb-4">韓國的成功案例：Cha Hong</h1>
+                    <div class="space-y-4 text-lg">
+                        <div class="bg-gray-50 p-4 rounded-md">
+                            <h2 class="font-bold">背景</h2>
+                            <p class="text-gray-600">韓國知名髮型設計師、同時也是網路名人，在韓國經營連鎖髮廊CHAHONG ARDOR。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-md">
+                            <h2 class="font-bold">商業模式</h2>
+                            <p class="text-gray-600">自創品牌CHAHONG，推出多元產品線；除官網外並在 Olive Young Global 等主流通路販售。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">11 / 24</div>
+        </section>
+
+        <!-- 投影片 12: 日本案例 -->
+         <section class="slide bg-white">
+            <div class="w-full max-w-6xl grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h1 class="text-4xl font-bold mb-4">日本的成功案例：京極 琉</h1>
+                    <div class="space-y-4 text-lg">
+                        <div class="bg-gray-50 p-4 rounded-md">
+                            <h2 class="font-bold">背景</h2>
+                            <p class="text-gray-600">日本知名髮型設計師，曾於2018 年於英國 International Visionary Award 奪冠，獲國際認可。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-md">
+                            <h2 class="font-bold">商業模式</h2>
+                            <p class="text-gray-600">以 KYOGOKU PROFESSIONAL 推出高度專業化產品，並成功營運海外官方商店（例：新加坡）。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-placeholder h-96">
+                     <p class="text-gray-500">[日本 京極 琉 形象照與品牌產品]</p>
+                </div>
+            </div>
+            <div class="slide-number">12 / 24</div>
+        </section>
+
+        <!-- 投影片 13: 越南案例 -->
+         <section class="slide bg-white">
+            <div class="w-full max-w-6xl grid md:grid-cols-2 gap-8 items-center">
+                <div class="chart-placeholder h-96">
+                     <p class="text-gray-500">[越南 Liêm Barber Shop 形象照與品牌產品]</p>
+                </div>
+                <div>
+                    <h1 class="text-4xl font-bold mb-4">越南的成功案例：Liêm Barber</h1>
+                    <div class="space-y-4 text-lg">
+                        <div class="bg-gray-50 p-4 rounded-md">
+                            <h2 class="font-bold">背景</h2>
+                            <p class="text-gray-600">越南指標性男士理髮連鎖品牌經營者，在越南擁有30家連鎖店，並成功進入新加坡市場。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-md">
+                            <h2 class="font-bold">商業模式</h2>
+                            <p class="text-gray-600">以 Heart & Hands 為自有品牌，品牌內容大量露出，並成功反向輸出到美國理髮店上架銷售。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">13 / 24</div>
+        </section>
+        
+        <!-- 投影片 14: 我們的成功要素 -->
+        <section class="slide gradient-bg flex-col">
+            <div class="w-full max-w-5xl text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-12">我們已具備一切要素，透過策略聯盟<br>打造出下一個台灣的成功案例</h1>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-8">
+                     <!-- 金三角圖示 -->
+                    <div class="relative w-80 h-80">
+                         <svg viewBox="0 0 100 100" class="absolute inset-0">
+                            <path d="M50 10 L90 80 L10 80 Z" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                            <line x1="50" y1="10" x2="50" y2="55" stroke="#3b82f6" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="90" y1="80" x2="50" y2="55" stroke="#3b82f6" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="10" y1="80" x2="50" y2="55" stroke="#3b82f6" stroke-width="1" stroke-dasharray="2,2"/>
+                        </svg>
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -mt-4 text-center">
+                            <div class="bg-blue-600 text-white rounded-full w-20 h-20 flex items-center justify-center shadow-lg">研發<br>製造</div>
+                            <p class="font-bold mt-1">RICA</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 -ml-4 text-center">
+                            <div class="bg-blue-600 text-white rounded-full w-20 h-20 flex items-center justify-center shadow-lg">通路<br>影響力</div>
+                            <p class="font-bold mt-1">UCA</p>
+                        </div>
+                        <div class="absolute bottom-0 right-0 -mr-4 text-center">
+                             <div class="bg-blue-600 text-white rounded-full w-20 h-20 flex items-center justify-center shadow-lg">品牌<br>策略</div>
+                             <p class="font-bold mt-1">JIYU</p>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                             <div class="bg-green-500 text-white rounded-full w-24 h-24 flex items-center justify-center shadow-xl text-center">新品牌<br>成功案例</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">14 / 24</div>
+        </section>
+
+        <!-- 投影片 15: 總結呼籲 -->
+        <section class="slide bg-white text-center">
+            <h1 class="text-4xl font-bold text-gray-800 w-full max-w-4xl">我們誠摯的希望 RICA一起加入這個計劃，<br>這對於我們雙方都有極大的好處</h1>
+            <div class="slide-number">15 / 24</div>
+        </section>
+
+        <!-- 投影片 16: RICA好處 -->
+        <section class="slide bg-gray-100 flex-col">
+            <div class="w-full max-w-4xl">
+                <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">對 RICA 集團的好處</h1>
+                <div class="space-y-6 text-xl">
+                    <div class="bg-white p-8 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h2 class="font-bold text-2xl text-gray-800 mb-2">直接的採購保證</h2>
+                        <p class="text-gray-600">尤卡集團的銷售保證，等同於吉畇國際對RICA集團的採購保證，大幅降低專案風險。</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h2 class="font-bold text-2xl text-gray-800 mb-2">開拓全新營收市場</h2>
+                        <p class="text-gray-600">除了鞏固高端市場，更能進攻規模更大的平價市場商機，創造新的成長曲線。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">16 / 24</div>
+        </section>
+
+        <!-- 投影片 17: JIYU好處 -->
+        <section class="slide bg-white flex-col">
+            <div class="w-full max-w-4xl">
+                 <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">對吉畇國際 (JIYU) 的好處</h1>
+                 <ul class="text-xl space-y-4 list-disc list-inside text-gray-700">
+                    <li>解決RICA產品受到水貨氾濫而影響銷售的核心問題。</li>
+                    <li>需要平價款的產品線來把握台灣跟亞洲市場的增長機會。</li>
+                    <li>尤卡集團的主動合作，等同於直接保證了專案的基礎銷量。</li>
+                 </ul>
+                 <div class="mt-8 bg-blue-50 text-blue-800 p-4 rounded-lg text-center">
+                    <p>這證明了我們對此專案的<span class="font-bold">高度承諾</span>與<span class="font-bold">全力以赴</span>的決心。</p>
+                 </div>
+            </div>
+            <div class="slide-number">17 / 24</div>
+        </section>
+
+        <!-- 投影片 18: 品牌投資承諾 -->
+        <section class="slide bg-gray-100 flex-col">
+            <div class="w-full max-w-4xl">
+                 <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">吉畇國際對 RICA 品牌持續投資的承諾</h1>
+                <div class="grid md:grid-cols-2 gap-8 text-lg">
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <div class="font-bold text-6xl text-gray-300 mb-2">ELLE</div>
+                        <h2 class="font-bold text-xl mb-2">2025上半年：與ELLE雜誌合作</h2>
+                        <p class="text-gray-600">提升RICA品牌在大眾消費者中的知名度。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <div class="font-bold text-6xl text-gray-300 mb-2">Breeze</div>
+                        <h2 class="font-bold text-xl mb-2">2025年底前：進駐微風廣場</h2>
+                        <p class="text-gray-600">與台灣最大的精品百貨集團合作，進駐展售間與線上商城。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">18 / 24</div>
+        </section>
+        
+        <!-- 投影片 19: 品牌策略 -->
+        <section class="slide bg-white flex-col">
+            <div class="w-full max-w-4xl">
+                <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">為什麼平價產品線不直接使用 RICA 品牌名稱</h1>
+                 <div class="space-y-6 text-xl">
+                    <div class="bg-gray-50 p-6 rounded-lg flex items-start">
+                        <span class="text-blue-500 text-3xl mr-4">🛡️</span>
+                        <div>
+                            <h2 class="font-bold text-gray-800">保護 RICA 品牌價值</h2>
+                            <p class="text-gray-600">不同的市場定位，需要使用新的品牌名稱，才不會傷害RICA的核心品牌價值，也不會造成消費者混淆。</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg flex items-start">
+                        <span class="text-blue-500 text-3xl mr-4">🚀</span>
+                        <div>
+                            <h2 class="font-bold text-gray-800">利用現有資源加速發展</h2>
+                            <p class="text-gray-600">我們將使用過去長期經營的美髮教育品牌命名，透過其在市場所累積的影響力，加速新品牌的成功。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">19 / 24</div>
+        </section>
+
+        <!-- 投影片 20: 合作模式 -->
+        <section class="slide bg-gray-100 flex-col">
+            <div class="w-full max-w-5xl">
+                <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">共同獲利、共同成長的深度合作模式</h1>
+                <div class="grid md:grid-cols-2 gap-8 text-center">
+                    <div class="bg-white p-8 rounded-lg shadow">
+                        <h2 class="text-3xl font-bold text-blue-600 mb-4">RICA 集團</h2>
+                        <ul class="text-lg text-gray-600 space-y-3 list-disc list-inside text-left">
+                           <li>負責產品研發 (R&D)</li>
+                           <li>負責生產內容物 (料體)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow">
+                        <h2 class="text-3xl font-bold text-blue-600 mb-4">吉畇國際</h2>
+                         <ul class="text-lg text-gray-600 space-y-3 list-disc list-inside text-left">
+                           <li>負責品牌發展規劃</li>
+                           <li>負責產品外包裝設計</li>
+                           <li>負責產品填裝與成品</li>
+                           <li>負責市場教育、推廣與銷售</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">20 / 24</div>
+        </section>
+
+        <!-- 投影片 21: 行動方案 -->
+        <section class="slide bg-white flex-col">
+            <div class="w-full max-w-4xl">
+                 <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">具體行動方案：讓我們從髮膜產品開始</h1>
+                 <p class="text-xl text-gray-600 text-center mb-10">漂髮、染髮、燙髮已是髮廊基本項目，顯示市場對髮質受損後的修復有極高的需求。</p>
+                 <div class="w-full flex justify-center items-center space-x-2">
+                    <div class="text-center p-6 bg-blue-100 rounded-lg shadow">
+                        <p class="text-sm text-blue-600">第一步</p>
+                        <p class="text-xl font-bold">頭髮修復</p>
+                    </div>
+                    <div class="text-3xl text-blue-300">→</div>
+                    <div class="text-center p-6 bg-gray-100 rounded-lg">
+                        <p class="text-sm text-gray-500">第二步</p>
+                        <p class="text-xl font-bold">頭髮保養</p>
+                    </div>
+                    <div class="text-3xl text-gray-300">→</div>
+                     <div class="text-center p-6 bg-gray-100 rounded-lg">
+                        <p class="text-sm text-gray-500">第三步</p>
+                        <p class="text-xl font-bold">基礎清潔</p>
+                    </div>
+                 </div>
+            </div>
+            <div class="slide-number">21 / 24</div>
+        </section>
+
+        <!-- 投影片 22: 最終呼籲 -->
+        <section class="slide gradient-bg-dark text-white text-center flex-col">
+             <div class="glass-effect p-12 w-full max-w-5xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight">這是一個絕佳的商業機會，<br>誠摯的邀請RICA集團與我們一同前行</h1>
+                <p class="text-xl text-gray-300 mt-6 tracking-wide">Questa è un'opportunità di business unica. Invitiamo sinceramente il gruppo RICA a scrivere insieme a noi il prossimo capitolo di successo.</p>
+            </div>
+            <div class="slide-number slide-number-dark">22 / 24</div>
+        </section>
+
+        <!-- 投影片 23: Q&A -->
+        <section class="slide gradient-bg flex-col text-center">
+            <h1 class="text-8xl font-bold text-gray-800">Grazie</h1>
+            <h2 class="text-4xl text-gray-600 mt-4">Q & A</h2>
+            <p class="text-2xl text-gray-500 mt-2">謝謝聆聽，問答時間</p>
+            <div class="slide-number">23 / 24</div>
+        </section>
+
+    </main>
+
+    <!-- 導航按鈕 -->
+    <div id="prev-slide" class="nav-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
+    </div>
+    <div id="next-slide" class="nav-arrow">
+         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slideContainer = document.getElementById('slide-container');
+            const slides = document.querySelectorAll('.slide');
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function goToSlide(slideIndex) {
+                if (slideIndex < 0 || slideIndex >= totalSlides) {
+                    return;
+                }
+                slides[slideIndex].scrollIntoView({ behavior: 'smooth' });
+                currentSlide = slideIndex;
+                updateNav();
+            }
+
+            function updateNav() {
+                // 處理捲動時的當前頁面偵測，確保currentSlide變數正確
+                const containerTop = slideContainer.getBoundingClientRect().top;
+                for (let i = 0; i < slides.length; i++) {
+                    const slideTop = slides[i].getBoundingClientRect().top;
+                    const slideBottom = slides[i].getBoundingClientRect().bottom;
+                    if (slideTop <= containerTop && slideBottom > containerTop) {
+                        currentSlide = i;
+                        break;
+                    }
+                }
+                
+                prevButton.style.display = currentSlide === 0 ? 'none' : 'flex';
+                nextButton.style.display = currentSlide === totalSlides - 1 ? 'none' : 'flex';
+            }
+
+            prevButton.addEventListener('click', () => {
+                goToSlide(currentSlide - 1);
+            });
+
+            nextButton.addEventListener('click', () => {
+                goToSlide(currentSlide + 1);
+            });
+
+            // 鍵盤導航
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                    e.preventDefault();
+                    goToSlide(currentSlide - 1);
+                } else if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+                    e.preventDefault();
+                    goToSlide(currentSlide + 1);
+                }
+            });
+
+            // 滾輪導航
+            let isThrottled = false;
+            slideContainer.addEventListener('wheel', (e) => {
+                if(isThrottled) return;
+                isThrottled = true;
+                
+                setTimeout(() => { isThrottled = false; }, 800); // 節流
+                
+                if (e.deltaY > 0) { // 向下滾動
+                    goToSlide(currentSlide + 1);
+                } else { // 向上滾動
+                    goToSlide(currentSlide - 1);
+                }
+            });
+            
+            // 監聽滾動事件來更新導航按鈕狀態
+            slideContainer.addEventListener('scroll', updateNav);
+
+            // 初始化
+            updateNav();
+        });
+    </script>
+</body>
+</html>
+
