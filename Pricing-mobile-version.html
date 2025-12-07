@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品折扣率規範手冊 (2025版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f3f4f6;
+            -webkit-print-color-adjust: exact;
+        }
+
+        /* --- Responsive Tabs CSS --- */
+        
+        /* 1. Mobile First (預設手機樣式：垂直堆疊) */
+        #tab-nav nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .tab-btn {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        /* Mobile Active State: 藍色背景 + 左側邊條 */
+        .tab-active {
+            background-color: #eff6ff; /* blue-50 */
+            color: #1e3a8a; /* blue-900 */
+            border-left: 4px solid #1e40af; /* blue-800 */
+            font-weight: 700;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Mobile Inactive State: 白色卡片 + 灰色邊框 */
+        .tab-inactive {
+            background-color: #ffffff;
+            color: #6b7280; /* gray-500 */
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-left: 4px solid transparent; /* 保持對齊 */
+        }
+        
+        .tab-inactive:hover {
+            background-color: #f9fafb; /* gray-50 */
+            border-color: #d1d5db;
+        }
+
+        /* 2. Desktop Styles (螢幕寬度 > 640px 時轉為水平分頁) */
+        @media (min-width: 640px) {
+            #tab-nav nav {
+                flex-direction: row;
+                gap: 2rem;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .tab-btn {
+                width: auto;
+                text-align: center;
+                padding: 1rem 0.25rem;
+                margin-bottom: -1px; /* 壓在分隔線上 */
+                border-radius: 0;
+                background-color: transparent !important; /* 覆蓋手機背景 */
+                border: none;
+                border-bottom: 3px solid transparent;
+                box-shadow: none;
+            }
+
+            /* Desktop Active: 僅底部藍線 */
+            .tab-active {
+                border-left: none;
+                border-bottom-color: #1e40af;
+                color: #1e3a8a;
+            }
+
+            /* Desktop Inactive */
+            .tab-inactive {
+                border-left: none;
+                border-color: transparent;
+            }
+
+            .tab-inactive:hover {
+                color: #374151;
+                border-bottom-color: #d1d5db;
+                background-color: transparent;
+            }
+        }
+
+        /* --- Print Specific Styles --- */
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 5mm;
+            }
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-break-inside-avoid {
+                break-inside: avoid;
+            }
+            /* Print: 展開所有分頁內容 */
+            .tab-content {
+                display: block !important;
+                margin-top: 20px;
+                border-top: 1px solid #ccc;
+            }
+            #tab-nav {
+                display: none;
+            }
+            td, th {
+                padding: 4px 8px !important;
+                font-size: 10pt !important;
+            }
+            .bg-blue-50 { background-color: #eff6ff !important; }
+            .bg-gray-100 { background-color: #f3f4f6 !important; }
+            .bg-yellow-50 { background-color: #fefce8 !important; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header / Control Bar -->
+    <header class="bg-white shadow-md sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-file-invoice-dollar text-blue-800 text-2xl mr-3"></i>
+                    <h1 class="text-xl font-bold text-gray-900">商品折扣率規範手冊</h1>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="window.print()" class="bg-blue-800 hover:bg-blue-900 text-white px-4 py-2 rounded-md text-sm font-medium transition flex items-center">
+                        <i class="fa-solid fa-print mr-2"></i> 列印文件 (A4橫式)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Document Title for Print -->
+    <div class="hidden print:block text-center mb-4 mt-4">
+        <h1 class="text-2xl font-bold text-gray-900">商品折扣率規範手冊</h1>
+        <p class="text-sm text-gray-600">版本日期：2025年12月 | 適用對象：全體銷售與行政人員</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- Tab Navigation (Updated for RWD) -->
+        <div id="tab-nav" class="mb-6 no-print">
+            <nav aria-label="Tabs">
+                <button onclick="switchTab('tab-1')" id="btn-tab-1" class="tab-btn tab-active">
+                    1. 身份定義與器材定價
+                </button>
+                <button onclick="switchTab('tab-2')" id="btn-tab-2" class="tab-btn tab-inactive">
+                    2. 儲值方案折扣級距
+                </button>
+                <button onclick="switchTab('tab-3')" id="btn-tab-3" class="tab-btn tab-inactive">
+                    3. 特殊合約客戶名單
+                </button>
+                <button onclick="switchTab('tab-4')" id="btn-tab-4" class="tab-btn tab-inactive">
+                    4. 散客、新客與贈品規則
+                </button>
+            </nav>
+        </div>
+
+        <!-- TAB 1: 身份定義與器材 -->
+        <div id="tab-1" class="tab-content block">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 print-break-inside-avoid">
+                <!-- Identity Cards -->
+                <div class="bg-white rounded-lg shadow border-l-4 border-gray-400 p-4">
+                    <h3 class="font-bold text-lg mb-2">一般散客</h3>
+                    <p class="text-sm text-gray-600">無簽署合約、無儲值紀錄之單次消費客戶。</p>
+                    <div class="mt-2 text-xs bg-gray-100 p-2 rounded">適用：原價、標準7折</div>
+                </div>
+                <div class="bg-white rounded-lg shadow border-l-4 border-blue-500 p-4">
+                    <h3 class="font-bold text-lg mb-2">特殊身份 / 學員</h3>
+                    <p class="text-sm text-gray-600">持有吉畇學員證、講師證，或認證美髮客。</p>
+                    <div class="mt-2 text-xs bg-blue-50 p-2 rounded">權益：器材/耗材享學員價</div>
+                </div>
+                <div class="bg-white rounded-lg shadow border-l-4 border-yellow-500 p-4">
+                    <h3 class="font-bold text-lg mb-2">儲值會員</h3>
+                    <p class="text-sm text-gray-600">已簽署儲值合約並預繳款項之客戶。</p>
+                    <div class="mt-2 text-xs bg-yellow-50 p-2 rounded">權益：依儲值金額享全品項優惠</div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow overflow-hidden rounded-lg mb-8 print-break-inside-avoid">
+                <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+                    <h3 class="text-lg leading-6 font-bold text-gray-900">器材與工具類：雙軌定價表</h3>
+                    <p class="mt-1 text-sm text-gray-500">此類商品分為「原價」與「會員/學員優惠價」。</p>
+                </div>
+                <!-- Add wrapper for horizontal scroll on mobile tables -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">品項名稱</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">原價 (散客)</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-50 whitespace-nowrap">優惠價 (儲值會員/學員)</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">備註</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">拔毛夾</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-500">$1,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-blue-700 bg-blue-50">$900 (9折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">熱蠟機</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-500">$4,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-blue-700 bg-blue-50">$3,000 (7.5折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">1000ml 壓頭</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-500">$100</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-blue-700 bg-blue-50">$70 (7折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">易潔美產品教育手冊</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-500">$840 (7折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-blue-700 bg-blue-50">$600 (5折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">易潔美使用說明卡 (20張/包)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-500">$140 (7折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-blue-700 bg-blue-50">$100 (5折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">火山淨化化妝水 (含噴頭)</td>
+                                <td colspan="2" class="px-6 py-4 whitespace-nowrap text-center font-bold text-gray-700">統一特價 $650 (3.25折)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">全身份統一</td>
+                            </tr>
+                             <tr class="bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">化妝水噴頭 (單購)</td>
+                                <td colspan="2" class="px-6 py-4 whitespace-nowrap text-center font-bold text-gray-700">統一售價 $100 (無折扣)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">耗材不打折</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: 儲值方案 -->
+        <div id="tab-2" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-4 border-l-4 border-indigo-600 pl-3">儲值會員折扣級距表</h2>
+            
+            <!-- General Recharge -->
+            <div class="bg-white shadow overflow-hidden rounded-lg mb-8 print-break-inside-avoid">
+                 <div class="px-4 py-3 bg-indigo-50 border-b border-indigo-200">
+                    <h3 class="text-lg font-bold text-indigo-900">(A) 一般儲值方案 (全品項適用)</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-300 border border-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-3 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider border-r whitespace-nowrap">儲值門檻</th>
+                                <th class="px-3 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider whitespace-nowrap">RICA 熱蠟</th>
+                                <th class="px-3 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider bg-gray-50 whitespace-nowrap">RICA 保養</th>
+                                <th class="px-3 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider whitespace-nowrap">RICA 其他<br><span class="text-[10px] font-normal">(洗護/造型/香氛)</span></th>
+                                <th class="px-3 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider bg-gray-50 whitespace-nowrap">易潔美<br><span class="text-[10px] font-normal">(軟糖膜/安瓶)</span></th>
+                                <th class="px-3 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider whitespace-nowrap">NEWTRAL</th>
+                                <th class="px-3 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider bg-gray-50 whitespace-nowrap">工具耗材</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-center">
+                            <tr>
+                                <td class="px-3 py-4 text-left font-bold text-indigo-700 border-r border-gray-200 whitespace-nowrap">30 萬</td>
+                                <td class="px-3 py-4 font-bold text-red-600 whitespace-nowrap">3.5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">4 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">4 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">4 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">4 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-4 text-left font-bold text-indigo-700 border-r border-gray-200 whitespace-nowrap">15萬 / 8萬 / 6萬3</td>
+                                <td class="px-3 py-4 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                            </tr>
+                             <tr>
+                                <td class="px-3 py-4 text-left font-bold text-indigo-700 border-r border-gray-200 whitespace-nowrap">3 萬 (小額體驗)</td>
+                                <td class="px-3 py-4 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-4 text-left font-bold text-indigo-700 border-r border-gray-200 whitespace-nowrap">3 萬 (一般方案)</td>
+                                <td class="px-3 py-4 whitespace-nowrap">6 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">6 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">5 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">6 折</td>
+                                <td class="px-3 py-4 whitespace-nowrap">6 折</td>
+                                <td class="px-3 py-4 bg-gray-50 whitespace-nowrap">5 折</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Restricted Recharge -->
+            <div class="bg-white shadow overflow-hidden rounded-lg print-break-inside-avoid">
+                <div class="px-4 py-3 bg-red-50 border-b border-red-200">
+                   <h3 class="text-lg font-bold text-red-900">(B) 限制型儲值方案 (僅限購 RICA 熱蠟)</h3>
+               </div>
+               <div class="overflow-x-auto">
+                   <table class="min-w-full divide-y divide-gray-300">
+                       <thead class="bg-gray-100">
+                           <tr>
+                               <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">方案名稱</th>
+                               <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">RICA 熱蠟折扣</th>
+                               <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider min-w-[150px]">其他商品購買權限</th>
+                               <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">工具耗材折扣</th>
+                           </tr>
+                       </thead>
+                       <tbody class="bg-white divide-y divide-gray-200">
+                           <tr>
+                               <td class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap">4 萬熱蠟限定 (3.5折方案)</td>
+                               <td class="px-6 py-4 text-red-600 font-bold text-lg whitespace-nowrap">3.5 折</td>
+                               <td class="px-6 py-4 text-sm text-gray-400 italic">不可購買 (需另付款)</td>
+                               <td class="px-6 py-4 text-gray-700 whitespace-nowrap">7 折</td>
+                           </tr>
+                           <tr>
+                               <td class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap">4 萬熱蠟限定 (4折方案)</td>
+                               <td class="px-6 py-4 text-red-600 font-bold text-lg whitespace-nowrap">4 折</td>
+                               <td class="px-6 py-4 text-sm text-gray-400 italic">不可購買 (需另付款)</td>
+                               <td class="px-6 py-4 text-gray-700 whitespace-nowrap">7 折</td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+        </div>
+
+        <!-- TAB 3: 特殊合約客戶 -->
+        <div id="tab-3" class="tab-content hidden">
+            <div class="flex justify-between items-center mb-4 no-print flex-wrap gap-2">
+                <h2 class="text-xl font-bold border-l-4 border-green-600 pl-3">特殊合約客戶名單</h2>
+                <div class="relative w-full sm:w-auto">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <i class="fa-solid fa-search text-gray-400"></i>
+                    </span>
+                    <input type="text" id="clientSearch" onkeyup="filterClients()" placeholder="輸入姓名搜尋..." class="w-full sm:w-auto pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm">
+                </div>
+            </div>
+
+            <!-- Search Instruction for Print -->
+            <div class="hidden print:block mb-2 text-sm text-gray-500 italic">
+                * 此表列出所有享有特殊合約折扣之指定客戶。
+            </div>
+
+            <div class="bg-white shadow overflow-hidden rounded-lg mb-8">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200" id="clientTable">
+                        <thead class="bg-green-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-bold text-green-800 uppercase tracking-wider w-1/4 whitespace-nowrap">客戶姓名 / 單位</th>
+                                <th class="px-4 py-3 text-left text-xs font-bold text-green-800 uppercase tracking-wider w-1/6 whitespace-nowrap">標籤</th>
+                                <th class="px-4 py-3 text-left text-xs font-bold text-green-800 uppercase tracking-wider whitespace-nowrap">熱蠟折扣</th>
+                                <th class="px-4 py-3 text-left text-xs font-bold text-green-800 uppercase tracking-wider whitespace-nowrap">保養折扣</th>
+                                <th class="px-4 py-3 text-left text-xs font-bold text-green-800 uppercase tracking-wider min-w-[200px]">其他重點折扣</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                            <!-- 朱國麟 -->
+                            <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">朱國麟</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4 折</td>
+                                <td class="px-4 py-3">洗護 4.5折 / 工具 5折</td>
+                            </tr>
+                            <!-- 邱鵬勳 / 陳姿蒨 -->
+                            <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">邱鵬勳 / 陳姿蒨</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4 折</td>
+                                <td class="px-4 py-3">易潔美 5折 / 工具 5折</td>
+                            </tr>
+                            <!-- 邱松圓 -->
+                            <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">邱松圓</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold text-red-600 whitespace-nowrap">3.5 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4 折</td>
+                                <td class="px-4 py-3">洗護 4折 / 工具 5折</td>
+                            </tr>
+                            <!-- 鮑泳齊 -->
+                            <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">鮑泳齊</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3">易潔美 <span class="text-red-600 font-bold">4折</span></td>
+                            </tr>
+                            <!-- 王宥維 -->
+                            <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">王宥維</td>
+                                <td class="px-4 py-3 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">經銷</span></td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4.5 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4.5 折</td>
+                                <td class="px-4 py-3">NEWTRAL熱蠟 <span class="text-red-600 font-bold">3.5折</span></td>
+                            </tr>
+                            <!-- 陳奕宏 -->
+                            <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">陳奕宏 (奧里)</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3">易潔美 5折 / 工具 5折</td>
+                            </tr>
+                            <!-- 陳慧慈 -->
+                            <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">陳慧慈</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3">易潔美 5折 / 工具 5折</td>
+                            </tr>
+                             <!-- 吳凱煌 -->
+                             <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">吳凱煌</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3">易潔美 5折 / 工具 5折</td>
+                            </tr>
+                             <!-- 王羿晴 -->
+                             <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">王羿晴</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 text-gray-400 whitespace-nowrap">N/A</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">6 折</td>
+                                <td class="px-4 py-3">(職用標籤)</td>
+                            </tr>
+                             <!-- 苡昕 -->
+                             <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">苡昕</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 text-gray-400 whitespace-nowrap">N/A</td>
+                                <td class="px-4 py-3 text-gray-400 whitespace-nowrap">N/A</td>
+                                <td class="px-4 py-3">RICA 工具耗材 5折</td>
+                            </tr>
+                             <!-- 黃瞳如 -->
+                             <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">黃瞳如</td>
+                                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">-</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">5 折</td>
+                                <td class="px-4 py-3">(職用標籤)</td>
+                            </tr>
+                             <!-- 尤卡分店 -->
+                             <tr>
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">尤卡分店＆盧志遠</td>
+                                <td class="px-4 py-3 text-xs whitespace-nowrap">不含總管理處</td>
+                                <td class="px-4 py-3 text-gray-400 whitespace-nowrap">N/A</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">6 折</td>
+                                <td class="px-4 py-3"></td>
+                            </tr>
+                             <!-- 內部店舖 -->
+                             <tr class="bg-gray-50">
+                                <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">NEWTRAL 馬卡門市 / 台中示範</td>
+                                <td class="px-4 py-3 text-xs whitespace-nowrap">內部店舖</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4 折</td>
+                                <td class="px-4 py-3 font-bold whitespace-nowrap">4 折</td>
+                                <td class="px-4 py-3">RICA禮盒5折 / 易潔美工具原價</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ez-skin Special Promo List -->
+            <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4 print-break-inside-avoid">
+                <h3 class="font-bold text-yellow-800 mb-2 flex items-center">
+                    <i class="fa-solid fa-star mr-2"></i> 易潔美 10萬儲值優惠專案名單
+                </h3>
+                <p class="text-sm text-yellow-800 mb-2">以下客戶適用易潔美特殊儲值優惠：</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm text-gray-700">
+                    <div class="bg-white px-2 py-1 rounded border border-yellow-100">劉弘鈴</div>
+                    <div class="bg-white px-2 py-1 rounded border border-yellow-100">柯宜黎</div>
+                    <div class="bg-white px-2 py-1 rounded border border-yellow-100">江珞瑗</div>
+                    <div class="bg-white px-2 py-1 rounded border border-yellow-100">鄭靖穎</div>
+                    <div class="bg-white px-2 py-1 rounded border border-yellow-100">陳佳琪</div>
+                    <div class="bg-white px-2 py-1 rounded border border-yellow-100">周怡君</div>
+                    <div class="bg-white px-2 py-1 rounded border border-yellow-100">林芷萱</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: 散客與贈品 -->
+        <div id="tab-4" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-4 border-l-4 border-pink-600 pl-3">散客、新客與贈品規則</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 print-break-inside-avoid">
+                <!-- New Customer Rules -->
+                <div class="bg-white shadow rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-pink-700 mb-3 border-b pb-2">新客 / 首購優惠</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <span class="bg-pink-100 text-pink-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded mt-0.5 whitespace-nowrap">首購</span>
+                            <span>不限金額，產品全面 <strong>6折</strong>。<br>滿 <strong>$5,000 免運費</strong>。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-pink-100 text-pink-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded mt-0.5 whitespace-nowrap">美髮首購</span>
+                            <span>若身份為美髮客，RICA洗護/造型/禮盒/香氛 加碼享 <strong>4折</strong>。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded mt-0.5 whitespace-nowrap">體驗儲值</span>
+                            <span>初次儲值小額 3萬，全品項 <strong>6折</strong>。<br>贈送「可可口味軟糖膜」1罐 (需簽回電子合約)。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Internal/Expired Goods -->
+                <div class="bg-white shadow rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-gray-700 mb-3 border-b pb-2">福利品與即期品 (限儲值客)</h3>
+                     <table class="min-w-full text-sm">
+                         <tbody class="divide-y divide-gray-100">
+                             <tr>
+                                 <td class="py-2 text-gray-600">(E2) 半年內效期</td>
+                                 <td class="py-2 font-bold text-right text-red-600">3 折</td>
+                             </tr>
+                             <tr>
+                                 <td class="py-2 text-gray-600">(E1) 一年內效期</td>
+                                 <td class="py-2 font-bold text-right text-red-600">3.5 折</td>
+                             </tr>
+                             <tr>
+                                 <td class="py-2 text-gray-600">(NG1) 不良品 (可銷售)</td>
+                                 <td class="py-2 font-bold text-right text-red-600">4.5 折</td>
+                             </tr>
+                         </tbody>
+                     </table>
+                </div>
+            </div>
+
+            <!-- Promo Gifts Table -->
+            <div class="mt-8 bg-white shadow rounded-lg overflow-hidden print-break-inside-avoid">
+                <div class="px-4 py-3 bg-pink-50 border-b border-pink-100">
+                    <h3 class="font-bold text-pink-900">易潔美組合贈送規則 (Buy X Get Y)</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-medium text-gray-500 whitespace-nowrap">產品類型</th>
+                                <th class="px-4 py-3 text-left font-medium text-gray-500 whitespace-nowrap">購買條件</th>
+                                <th class="px-4 py-3 text-left font-medium text-gray-500 whitespace-nowrap">贈送內容</th>
+                                <th class="px-4 py-3 text-left font-medium text-gray-500 text-xs text-gray-400 whitespace-nowrap">排除條款</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3 font-medium whitespace-nowrap">軟糖膜 (罐裝)</td>
+                                <td class="px-4 py-3 whitespace-nowrap">買 5</td>
+                                <td class="px-4 py-3 text-green-600 font-bold whitespace-nowrap">贈 1 (任選)</td>
+                                <td class="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">不含24K金</td>
+                            </tr>
+                             <tr>
+                                <td class="px-4 py-3 font-medium whitespace-nowrap">软糖膜 (罐裝)</td>
+                                <td class="px-4 py-3 whitespace-nowrap">買 5</td>
+                                <td class="px-4 py-3 text-green-600 font-bold whitespace-nowrap">贈 1 瓶 100ml 精華液</td>
+                                <td class="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">-</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-medium whitespace-nowrap">軟糖膜 (罐裝)</td>
+                                <td class="px-4 py-3 whitespace-nowrap">買 10</td>
+                                <td class="px-4 py-3 text-green-600 font-bold whitespace-nowrap">贈 2 (軟糖膜/精華任選)</td>
+                                <td class="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">不含24K金</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-medium whitespace-nowrap">軟糖膜 (盒裝)</td>
+                                <td class="px-4 py-3 whitespace-nowrap">買 6</td>
+                                <td class="px-4 py-3 text-green-600 font-bold whitespace-nowrap">贈 1 (任選)</td>
+                                <td class="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">不含24K金</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-medium whitespace-nowrap">精華液 / 安瓶</td>
+                                <td class="px-4 py-3 whitespace-nowrap">買 4</td>
+                                <td class="px-4 py-3 text-green-600 font-bold whitespace-nowrap">贈 1 (任選)</td>
+                                <td class="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-500 text-xs no-print">
+        &copy; 2025 Company Name. All Rights Reserved. 內部文件請勿外流。
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                if (!content.classList.contains('hidden')) {
+                    content.classList.add('hidden');
+                    content.classList.remove('block');
+                }
+            });
+
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('button[id^="btn-tab"]');
+            buttons.forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('tab-inactive');
+            });
+
+            // Show selected content
+            const selectedContent = document.getElementById(tabId);
+            selectedContent.classList.remove('hidden');
+            selectedContent.classList.add('block');
+
+            // Activate button
+            const selectedBtn = document.getElementById('btn-' + tabId);
+            selectedBtn.classList.remove('tab-inactive');
+            selectedBtn.classList.add('tab-active');
+        }
+
+        function filterClients() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("clientSearch");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("clientTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                // Check first column (Name)
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
