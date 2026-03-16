@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單處理流程總覽 SOP</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* 處理原版 tailwindcss-animate 的進場動畫效果 */
+        @keyframes fadeInZoom {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        
+        .anim-fade-zoom {
+            animation: fadeInZoom 0.5s ease-out forwards;
+        }
+        .anim-slide-right {
+            animation: slideInRight 0.5s ease-out forwards;
+        }
+
+        /* 自定義捲軸樣式使其更美觀 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="bg-gray-200 min-h-screen p-4 md:p-8 flex items-center justify-center font-sans text-slate-800">
+
+    <!-- 主容器 -->
+    <div class="flex flex-col w-full max-w-6xl mx-auto h-[800px] bg-slate-50 shadow-2xl rounded-2xl overflow-hidden border border-slate-200 relative">
+        
+        <!-- Header -->
+        <div class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center shrink-0">
+            <div>
+                <h1 class="text-xl font-bold tracking-wider">標準作業流程 (SOP)</h1>
+                <p id="header-title" class="text-slate-400 text-sm mt-1">訂單處理流程總覽</p>
+            </div>
+            <div class="flex items-center gap-4 text-sm">
+                <span id="header-counter">Slide 1 / 5</span>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-grow p-8 overflow-y-auto bg-slate-50 relative">
+            
+            <!-- Slide 0: Cover / Index -->
+            <div id="slide-0" class="slide-container h-full flex flex-col justify-center items-center text-center anim-fade-zoom">
+                <h2 class="text-4xl font-extrabold text-slate-800 mb-6">訂單處理作業流程</h2>
+                <p class="text-lg text-slate-600 mb-12 max-w-2xl">將訂單情境分為「現場取貨」、「現場宅配」與「線上訂單」三大類別，請依照情境點擊查看對應的標準處理流程。</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+                    <button onclick="goToSlide(1)" class="group p-8 bg-white border-2 border-slate-200 rounded-2xl hover:border-blue-500 hover:shadow-xl transition-all cursor-pointer flex flex-col items-center">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="shopping-bag" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">現場取貨</h3>
+                        <p class="text-sm text-slate-500">顧客現場下單並直接帶走商品</p>
+                    </button>
+
+                    <button onclick="goToSlide(2)" class="group p-8 bg-white border-2 border-slate-200 rounded-2xl hover:border-teal-500 hover:shadow-xl transition-all cursor-pointer flex flex-col items-center">
+                        <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="send" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">現場宅配</h3>
+                        <p class="text-sm text-slate-500">顧客現場下單，後續安排宅配寄出</p>
+                    </button>
+
+                    <button onclick="goToSlide(3)" class="group p-8 bg-white border-2 border-slate-200 rounded-2xl hover:border-indigo-500 hover:shadow-xl transition-all cursor-pointer flex flex-col items-center">
+                        <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="smartphone" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">線上訂單</h3>
+                        <p class="text-sm text-slate-500">客服人員於線上接單處理</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 1: 現場取貨 -->
+            <div id="slide-1" class="slide-container hidden h-full flex-col anim-slide-right">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                        <i data-lucide="shopping-bag" class="text-blue-600"></i> 現場取貨訂單
+                    </h2>
+                    <p class="text-slate-600 mt-2">特徵：當下結帳、當下給貨、由 Will 處理單據轉換。</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 items-stretch justify-start">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">1</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-blue-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-blue-100 text-blue-800 border-blue-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>業務</div>
+                                <span class="flex items-center gap-1 text-xs bg-slate-800 text-white px-2 py-1 rounded"><i data-lucide="monitor" class="w-3 h-3"></i> MPOS</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">建立訂單並撿貨，將贈品配給客人。</p>
+                                <div class="mt-auto pt-3 border-t border-dashed border-slate-200">
+                                    <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                        <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>不織布袋、筆不須建入系統</span>
+                                    </div>
+                                    <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                        <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>沒有紙袋</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">2</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-pink-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-pink-100 text-pink-800 border-pink-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>宇薇</div>
+                                <span class="flex items-center gap-1 text-xs bg-slate-800 text-white px-2 py-1 rounded"><i data-lucide="monitor" class="w-3 h-3"></i> MPOS</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">操作結帳，開立發票給客人。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">3</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-gray-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-gray-100 text-gray-800 border-gray-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>客戶</div>
+                                <span class="flex items-center gap-1 text-xs bg-green-500 text-white px-2 py-1 rounded"><i data-lucide="smartphone" class="w-3 h-3"></i> LINE</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">將付款完成的截圖傳送至官方 LINE。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">4</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-purple-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-purple-100 text-purple-800 border-purple-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>Will</div>
+                                <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">補上付款截圖，點擊按鈕直接轉為「銷貨單」。</p>
+                                <div class="mt-auto pt-3 border-t border-dashed border-slate-200">
+                                    <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                        <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>跳過訂購單簽核步驟</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">5</div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-purple-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-purple-100 text-purple-800 border-purple-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>Will</div>
+                                <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">簽核銷貨單（產生出貨單），接著簽核出貨單，流程結束。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: 現場宅配 -->
+            <div id="slide-2" class="slide-container hidden h-full flex-col anim-slide-right">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                        <i data-lucide="send" class="text-teal-600"></i> 現場宅配訂單
+                    </h2>
+                    <p class="text-slate-600 mt-2">跨部門交接重點：當下結帳不給貨，系統自動通知後勤，交由<span class="font-bold text-teal-700">阿芳進行後續揀貨</span>與出貨。</p>
+                </div>
+                
+                <div class="flex flex-wrap md:flex-nowrap gap-4 items-stretch justify-start overflow-x-auto pb-6 snap-x">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0 snap-start">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">1</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-blue-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-blue-100 text-blue-800 border-blue-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>業務</div>
+                                <span class="flex items-center gap-1 text-xs bg-slate-800 text-white px-2 py-1 rounded"><i data-lucide="monitor" class="w-3 h-3"></i> MPOS</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">建立訂單（贈品先給客人）。</p>
+                                <div class="mt-auto pt-3 border-t border-dashed border-slate-200">
+                                    <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                        <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>不織布袋、筆不須建入系統</span>
+                                    </div>
+                                    <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                        <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>不給紙袋</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0 snap-start">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">2</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-pink-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-pink-100 text-pink-800 border-pink-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>宇薇</div>
+                                <span class="flex items-center gap-1 text-xs bg-slate-800 text-white px-2 py-1 rounded"><i data-lucide="monitor" class="w-3 h-3"></i> MPOS</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">操作結帳，開立發票。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0 snap-start">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">3</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-gray-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-gray-100 text-gray-800 border-gray-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>客戶</div>
+                                <span class="flex items-center gap-1 text-xs bg-green-500 text-white px-2 py-1 rounded"><i data-lucide="smartphone" class="w-3 h-3"></i> LINE</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">傳送付款截圖至官方 LINE。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0 snap-start">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">4</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-purple-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-purple-100 text-purple-800 border-purple-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>Will</div>
+                                <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">補截圖並轉「銷貨單」，系統自動發信給阿芳。</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0 snap-start">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">5</div>
+                        <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                            <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                        </div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-orange-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-orange-100 text-orange-800 border-orange-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>惠雅</div>
+                                <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">負責簽核「銷貨單」，系統自動產生「出貨單」。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0 snap-start">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">6</div>
+                        <div class="w-full max-w-[220px] bg-white border-2 border-teal-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                            <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-teal-100 text-teal-800 border-teal-300">
+                                <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>阿芳</div>
+                                <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col gap-3">
+                                <p class="text-sm font-medium text-slate-800 leading-relaxed">進行實體揀貨，完成後簽核「出貨單」，流程結束。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: 線上訂單 -->
+            <div id="slide-3" class="slide-container hidden h-full flex-col anim-slide-right">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                        <i data-lucide="smartphone" class="text-indigo-600"></i> 線上訂單處理
+                    </h2>
+                    <p class="text-slate-600 mt-2">跨部門交接重點：前端客服建單後，<span class="font-bold text-teal-700">阿芳揀貨</span>與<span class="font-bold text-slate-700">客戶付款</span>為<span class="font-bold text-rose-600">雙線同時進行</span>。後續牽涉多關卡審核（佩琳 ➔ 惠雅 ➔ 阿芳）。</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-y-12 gap-x-4 items-stretch justify-start">
+                    <!-- Row 1 -->
+                    <div class="w-full flex flex-wrap md:flex-nowrap gap-4">
+                        <!-- Step 1 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">1</div>
+                            <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                                <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                            </div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-cyan-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-cyan-100 text-cyan-800 border-cyan-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>線上客服</div>
+                                    <span class="flex items-center gap-1 text-xs bg-slate-800 text-white px-2 py-1 rounded"><i data-lucide="monitor" class="w-3 h-3"></i> MPOS</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">處理訊息，建立購買商品、不織布袋與筆。</p>
+                                    <div class="mt-auto pt-3 border-t border-dashed border-slate-200">
+                                        <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                            <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>即期/不良品需手動輸入折扣</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">2</div>
+                            <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                                <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                            </div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-cyan-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-cyan-100 text-cyan-800 border-cyan-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>線上客服</div>
+                                    <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">完成付款狀態設定，並輸入紙袋數量。</p>
+                                    <div class="mt-auto pt-3 border-t border-dashed border-slate-200">
+                                        <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                            <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>絕對不要在 MPOS 結帳</span>
+                                        </div>
+                                        <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                            <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>紙袋只能在 Ragic 輸入</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">3</div>
+                            <div class="hidden md:block absolute top-4 left-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                                <i data-lucide="chevron-right" class="absolute -right-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                            </div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-cyan-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-cyan-100 text-cyan-800 border-cyan-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>線上客服</div>
+                                    <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">發送 Mail 通知「阿芳」揀貨；同時產訂購單給客戶確認。</p>
+                                    <div class="mt-auto pt-3 border-t border-dashed border-slate-200">
+                                        <div class="flex items-start gap-1.5 text-xs text-rose-600 font-medium mb-1.5 leading-tight">
+                                            <i data-lucide="alert-circle" class="shrink-0 w-3.5 h-3.5 mt-0.5"></i><span>⭐ 阿芳開始揀貨，與客戶付款同時進行</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">4</div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-gray-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-gray-100 text-gray-800 border-gray-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>客戶</div>
+                                    <span class="flex items-center gap-1 text-xs bg-green-500 text-white px-2 py-1 rounded"><i data-lucide="smartphone" class="w-3 h-3"></i> LINE</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">確認訂單並完成轉帳付款。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 視覺連接線 (Desktop) -->
+                    <div class="hidden md:flex w-full h-8 -mt-8 items-center justify-end pr-[12%]">
+                        <div class="w-[2px] h-16 bg-slate-300"></div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="w-full flex flex-wrap md:flex-nowrap gap-4 md:flex-row-reverse">
+                        
+                        <!-- Step 8 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">8</div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-teal-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-teal-100 text-teal-800 border-teal-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>阿芳</div>
+                                    <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">確認揀貨與包裝完畢，簽核「出貨單」，結束流程。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 7 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">7</div>
+                            <div class="hidden md:block absolute top-4 right-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                                <i data-lucide="chevron-left" class="absolute -left-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                            </div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-orange-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-orange-100 text-orange-800 border-orange-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>惠雅</div>
+                                    <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">簽核銷貨單，並開立發票（產生出貨單）。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 6 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">6</div>
+                            <div class="hidden md:block absolute top-4 right-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                                <i data-lucide="chevron-left" class="absolute -left-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                            </div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-indigo-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-indigo-100 text-indigo-800 border-indigo-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>佩琳</div>
+                                    <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">確認沒問題後，簽核訂購單（轉銷貨單給惠雅）。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="relative flex flex-col items-center w-full md:w-1/4 min-w-[200px] mb-8 md:mb-0">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold mb-3 z-10 shadow-lg">5</div>
+                            <div class="hidden md:block absolute top-4 right-[60%] w-[80%] h-[2px] bg-slate-300 z-0">
+                                <i data-lucide="chevron-left" class="absolute -left-2 -top-[11px] text-slate-300 w-6 h-6"></i>
+                            </div>
+                            <div class="w-full max-w-[220px] bg-white border-2 border-cyan-300 rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                                <div class="px-3 py-2 flex items-center justify-between font-bold border-b bg-cyan-100 text-cyan-800 border-cyan-300">
+                                    <div class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i>線上客服</div>
+                                    <span class="flex items-center gap-1 text-xs bg-emerald-600 text-white px-2 py-1 rounded"><i data-lucide="database" class="w-3 h-3"></i> Ragic</span>
+                                </div>
+                                <div class="p-4 flex-grow flex flex-col gap-3">
+                                    <p class="text-sm font-medium text-slate-800 leading-relaxed">上傳轉帳截圖，送出給「佩琳」簽核。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: 系統與角色權責總結 -->
+            <div id="slide-4" class="slide-container hidden h-full flex-col anim-slide-right">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                        <i data-lucide="file-text" class="text-slate-600"></i> 系統與角色權責總結
+                    </h2>
+                    <p class="text-slate-600 mt-2">全體部門協作一覽：各角色於訂單流程中的核心職責與跨部門交接點。</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto pb-4 content-start">
+                    <div class="bg-white p-4 rounded-xl border-2 border-blue-200 shadow-sm">
+                        <div class="flex items-center gap-2 font-bold text-blue-800 mb-2"><i data-lucide="user" class="w-[18px] h-[18px]"></i> 第一線人員 (業務/客服)</div>
+                        <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                            <li>現場業務建立訂單 (MPOS)</li>
+                            <li>線上客服建立訂單 (MPOS/Ragic)</li>
+                            <li>現場取貨單揀貨</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-xl border-2 border-pink-200 shadow-sm">
+                        <div class="flex items-center gap-2 font-bold text-pink-800 mb-2"><i data-lucide="user" class="w-[18px] h-[18px]"></i> 宇薇</div>
+                        <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                            <li>專職處理現場顧客 MPOS 結帳</li>
+                            <li>開立實體發票交給顧客</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-2 border-purple-200 shadow-sm">
+                        <div class="flex items-center gap-2 font-bold text-purple-800 mb-2"><i data-lucide="user" class="w-[18px] h-[18px]"></i> Will</div>
+                        <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                            <li>處理現場訂單的系統轉單</li>
+                            <li>負責「現場取貨」流程的單據簽核</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-2 border-teal-200 shadow-sm">
+                        <div class="flex items-center gap-2 font-bold text-teal-800 mb-2"><i data-lucide="user" class="w-[18px] h-[18px]"></i> 阿芳</div>
+                        <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                            <li>負責現場宅配與線上訂單的<span class="font-bold text-teal-600">實體揀貨</span></li>
+                            <li>於流程最後一關簽核「出貨單」</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-2 border-orange-200 shadow-sm">
+                        <div class="flex items-center gap-2 font-bold text-orange-800 mb-2"><i data-lucide="user" class="w-[18px] h-[18px]"></i> 惠雅</div>
+                        <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                            <li>負責「現場宅配/線上」銷貨單簽核</li>
+                            <li>線上訂單的發票開立</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-2 border-indigo-200 shadow-sm">
+                        <div class="flex items-center gap-2 font-bold text-indigo-800 mb-2"><i data-lucide="user" class="w-[18px] h-[18px]"></i> 佩琳</div>
+                        <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                            <li>審核線上訂單的訂購單內容</li>
+                            <li>簽核線上訂購單，放行進入後續流程</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="bg-white border-t border-slate-200 px-6 py-4 flex justify-between items-center shrink-0">
+            <button id="prev-btn" onclick="prevSlide()" disabled class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-slate-300 cursor-not-allowed">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i> 上一步
+            </button>
+            
+            <!-- Progress Dots -->
+            <div class="flex gap-2" id="progress-dots">
+                <!-- 由 JavaScript 自動產生 -->
+            </div>
+
+            <button id="next-btn" onclick="nextSlide()" class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors bg-blue-600 text-white hover:bg-blue-700 shadow-md">
+                下一步 <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 腳本邏輯 -->
+    <script>
+        // 初始化 Lucide 圖示
+        lucide.createIcons();
+
+        // 資料設定
+        const slidesData = [
+            { id: 'cover', title: '訂單處理流程總覽' },
+            { id: 'pickup', title: '1. 現場取貨訂單流程' },
+            { id: 'delivery', title: '2. 現場宅配訂單流程' },
+            { id: 'online', title: '3. 線上訂單流程' },
+            { id: 'summary', title: '系統與角色權責總結' }
+        ];
+
+        let currentSlide = 0;
+
+        // 初始化 Progress Dots
+        const dotsContainer = document.getElementById('progress-dots');
+        slidesData.forEach((_, idx) => {
+            const dot = document.createElement('div');
+            dot.className = `w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${idx === 0 ? 'bg-slate-800' : 'bg-slate-300 hover:bg-slate-400'}`;
+            dot.onclick = () => goToSlide(idx);
+            dotsContainer.appendChild(dot);
+        });
+
+        // 更新 UI 畫面
+        function updateUI() {
+            // 隱藏所有 Slide
+            document.querySelectorAll('.slide-container').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('flex');
+            });
+
+            // 顯示當前 Slide 並觸發動畫
+            const currentEl = document.getElementById(`slide-${currentSlide}`);
+            currentEl.classList.remove('hidden');
+            currentEl.classList.add('flex');
+            
+            // 重新觸發進場動畫
+            currentEl.style.animation = 'none';
+            currentEl.offsetHeight; // Trigger reflow
+            currentEl.style.animation = null;
+
+            // 更新 Header
+            document.getElementById('header-title').innerText = slidesData[currentSlide].title;
+            document.getElementById('header-counter').innerText = `Slide ${currentSlide + 1} / ${slidesData.length}`;
+
+            // 更新按鈕狀態
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (currentSlide === 0) {
+                prevBtn.disabled = true;
+                prevBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-slate-300 cursor-not-allowed";
+            } else {
+                prevBtn.disabled = false;
+                prevBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-slate-700 hover:bg-slate-100 cursor-pointer";
+            }
+
+            if (currentSlide === slidesData.length - 1) {
+                nextBtn.disabled = true;
+                nextBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-slate-300 cursor-not-allowed";
+            } else {
+                nextBtn.disabled = false;
+                nextBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors bg-blue-600 text-white hover:bg-blue-700 shadow-md cursor-pointer";
+            }
+
+            // 更新 Progress Dots
+            const dots = dotsContainer.children;
+            Array.from(dots).forEach((dot, idx) => {
+                dot.className = `w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${currentSlide === idx ? 'bg-slate-800' : 'bg-slate-300 hover:bg-slate-400'}`;
+            });
+        }
+
+        // 導覽邏輯
+        function goToSlide(index) {
+            currentSlide = index;
+            updateUI();
+        }
+
+        function nextSlide() {
+            if (currentSlide < slidesData.length - 1) {
+                currentSlide++;
+                updateUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateUI();
+            }
+        }
+    </script>
+</body>
+</html>
